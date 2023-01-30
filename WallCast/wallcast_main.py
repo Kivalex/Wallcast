@@ -12,7 +12,7 @@ class Ui_MainWindow(object):
         MainWindow.setMaximumSize(QtCore.QSize(1280, 720))
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         MainWindow.setWindowTitle("WallCast")
-        MainWindow.setStyleSheet("background-color: rgb(160, 255, 155);")
+        MainWindow.setStyleSheet("background-color: rgb(157, 161, 170);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)

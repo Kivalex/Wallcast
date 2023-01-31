@@ -21,10 +21,9 @@ class Ui_MainWindow(object):
         self.box_top_selection.setFrameShadow(QtWidgets.QFrame.Raised)
         self.box_top_selection.setObjectName("box_top_selection")
         self.label_logo = QtWidgets.QLabel(self.box_top_selection)
-        self.label_logo.setVisible(False)
         self.label_logo.setGeometry(QtCore.QRect(10, 0, 81, 71))
         self.label_logo.setText("")
-        self.label_logo.setPixmap(QtGui.QPixmap("C:\\Users\PC\PycharmProjects\pythonProject\WallCast\logo_wallcast.png"))
+        self.label_logo.setPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\logo_wallcast.png"))
         self.label_logo.setObjectName("label_logo")
         self.pushButton_tape = QtWidgets.QPushButton(self.box_top_selection)
         self.pushButton_tape.setGeometry(QtCore.QRect(110, 16, 141, 41))
@@ -87,6 +86,7 @@ class Ui_MainWindow(object):
         self.fon.setFrameShadow(QtWidgets.QFrame.Raised)
         self.fon.setObjectName("fon")
         self.box_tape_slection = QtWidgets.QFrame(self.centralwidget)
+        self.box_tape_slection.setVisible(False)
         self.box_tape_slection.setGeometry(QtCore.QRect(80, 60, 201, 111))
         self.box_tape_slection.setStyleSheet("border-style: outset;\n"
 "background-color: rgb(0, 0, 0);\n"
@@ -98,7 +98,6 @@ class Ui_MainWindow(object):
         self.box_tape_slection.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.box_tape_slection.setFrameShadow(QtWidgets.QFrame.Raised)
         self.box_tape_slection.setObjectName("box_tape_slection")
-        self.box_tape_slection.setVisible(False)
         self.pushButton_tape_2 = QtWidgets.QPushButton(self.box_tape_slection)
         self.pushButton_tape_2.setGeometry(QtCore.QRect(5, 10, 191, 41))
         self.pushButton_tape_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -130,7 +129,6 @@ class Ui_MainWindow(object):
         self.box_settings.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.box_settings.setFrameShadow(QtWidgets.QFrame.Raised)
         self.box_settings.setObjectName("box_settings")
-        self.box_settings.setVisible(False)
         self.label = QtWidgets.QLabel(self.box_settings)
         self.label.setGeometry(QtCore.QRect(10, 0, 131, 31))
         self.label.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -197,6 +195,7 @@ class Ui_MainWindow(object):
 
     def wallcast_tape_button_click(self):
         self.box_tape_slection.setVisible(True)
+        print(1)
     def wallcast_profil_top_butt_click(self):
         self.box_settings.setVisible(True)
 

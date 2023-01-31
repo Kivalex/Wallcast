@@ -14,17 +14,20 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("background-color: rgb(157, 161, 170);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        '''Верхняя чёрная полоса'''
         self.box_top_selection = QtWidgets.QFrame(self.centralwidget)
         self.box_top_selection.setGeometry(QtCore.QRect(0, -1, 1280, 71))
         self.box_top_selection.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.box_top_selection.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.box_top_selection.setFrameShadow(QtWidgets.QFrame.Raised)
         self.box_top_selection.setObjectName("box_top_selection")
+        '''Логотип wallcast'''
         self.label_logo = QtWidgets.QLabel(self.box_top_selection)
         self.label_logo.setGeometry(QtCore.QRect(10, 0, 81, 71))
         self.label_logo.setText("")
         self.label_logo.setPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\logo_wallcast.png"))
         self.label_logo.setObjectName("label_logo")
+        '''Кнопка "Лента"'''
         self.pushButton_tape = QtWidgets.QPushButton(self.box_top_selection)
         self.pushButton_tape.setGeometry(QtCore.QRect(110, 16, 141, 41))
         self.pushButton_tape.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -36,6 +39,7 @@ class Ui_MainWindow(object):
 "font: bold 28px;\n"
 "padding: 2px;")
         self.pushButton_tape.setObjectName("pushButton_tape")
+        '''Кнопка "Подписки"'''
         self.pushButton_subscriptions = QtWidgets.QPushButton(self.box_top_selection)
         self.pushButton_subscriptions.setGeometry(QtCore.QRect(280, 16, 141, 41))
         self.pushButton_subscriptions.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -47,6 +51,7 @@ class Ui_MainWindow(object):
 "font: bold 28px;\n"
 "padding: 2px;")
         self.pushButton_subscriptions.setObjectName("pushButton_subscriptions")
+        '''кнопка "Сообщения"'''
         self.pushButton_messages = QtWidgets.QPushButton(self.box_top_selection)
         self.pushButton_messages.setGeometry(QtCore.QRect(450, 16, 141, 41))
         self.pushButton_messages.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -58,6 +63,7 @@ class Ui_MainWindow(object):
 "font: bold 28px;\n"
 "padding: 2px;")
         self.pushButton_messages.setObjectName("pushButton_messages")
+        '''кнопка "Профиль"'''
         self.pushButton_profil = QtWidgets.QPushButton(self.box_top_selection)
         self.pushButton_profil.setGeometry(QtCore.QRect(1220, 11, 51, 51))
         self.pushButton_profil.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -69,7 +75,7 @@ class Ui_MainWindow(object):
 "padding: 6px;")
         self.pushButton_profil.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\ava_wallcast.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\ava_wallcast.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)    # импорт фотографии аватарки
         self.pushButton_profil.setIcon(icon)
         self.pushButton_profil.setIconSize(QtCore.QSize(77, 54))
         self.pushButton_profil.setAutoRepeat(False)
@@ -188,17 +194,16 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "Настройки"))
         self.label_4.setText(_translate("MainWindow", "Выйти"))
         self.label_5.setText(_translate("MainWindow", "Сменить аккаунт"))
-
+    '''Все функции кнопок'''
     def function_wallcast(self):
         self.pushButton_tape.clicked.connect(self.wallcast_tape_button_click)
         self.pushButton_profil.clicked.connect(self.wallcast_profil_top_butt_click)
 
     def wallcast_tape_button_click(self):
         self.box_tape_slection.setVisible(True)
-        print(1)
     def wallcast_profil_top_butt_click(self):
         self.box_settings.setVisible(True)
-
+'''Запуск программы'''
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

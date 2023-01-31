@@ -1,8 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
 
 import wallcast_functions
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QMainWindow, object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
@@ -11,6 +12,11 @@ class Ui_MainWindow(object):
         MainWindow.setMaximumSize(QtCore.QSize(1280, 720))
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         MainWindow.setWindowTitle("WallCast")
+        icon = QtGui.QIcon("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\logo_wallcast.png")
+        icon.addPixmap(QtGui.QPixmap(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet("background-color: rgb(157, 161, 170);")
+        MainWindow.setIconSize(QtCore.QSize(24, 24))
         MainWindow.setStyleSheet("background-color: rgb(157, 161, 170);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -247,6 +253,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
         self.function_wallcast()
 
     def retranslateUi(self, MainWindow):
@@ -265,7 +272,6 @@ class Ui_MainWindow(object):
         self.settings_button_profil.setText(_translate("MainWindow", "Настройки"))
         self.log_off_button_profil.setText(_translate("MainWindow", "Выйти"))
         self.change_account_button_profil.setText(_translate("MainWindow", "Сменить аккаунт"))
-
 
     '''Все функции кнопок'''
     def function_wallcast(self):    #отслеживание нажатия на кнопки

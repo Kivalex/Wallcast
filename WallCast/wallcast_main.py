@@ -112,7 +112,7 @@ class Ui_MainWindow(object):
 "border-width: 2px;\n"
 "border-radius: 20px;\n"
 "border-color: beige;\n"
-"font: bold 28px;\n"
+"font: bold 24px;\n"
 "padding: 2px;")
         self.pushButton_tape_2.setObjectName("pushButton_tape_2")
         self.pushButton_tape_3 = QtWidgets.QPushButton(self.box_tape_slection)
@@ -123,7 +123,7 @@ class Ui_MainWindow(object):
 "border-width: 2px;\n"
 "border-radius: 20px;\n"
 "border-color: beige;\n"
-"font: bold 28px;\n"
+"font: bold 24px;\n"
 "padding: 2px;")
         self.pushButton_tape_3.setObjectName("pushButton_tape_3")
         self.box_settings = QtWidgets.QFrame(self.centralwidget)

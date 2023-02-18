@@ -393,11 +393,14 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushbutton_hide_window1.clicked.connect(self.wallcast_hide_window_after_click)
         self.pushbutton_hide_window2.clicked.connect(self.wallcast_hide_window_after_click)
         self.notifications_pushbutton.clicked.connect(self.wallcast_notification_button_click)
+        self.pushButton_tape_2.clicked.connect(self.wallcast_tape_2_button_click)
 
 
     def wallcast_tape_button_click(self):    #При нажатии на кнопку 'Лента' происходит
         self.box_tape_slection.setVisible(True)
-        self.pushButton_tape_2.clicked.connect(self.wallcast_tape_2_button_click)
+        self.box_tape_slection.raise_()
+        self.pushbutton_hide_window1.setVisible(True)
+        self.pushbutton_hide_window2.setVisible(True)
     def wallcast_profil_top_button_click(self):    #При нажатии на кнопку 'Профиль' происходит
         self.box_settings.setVisible(True)
         self.pushbutton_hide_window1.setGeometry(QtCore.QRect(0, 290, 1281, 431))
@@ -414,6 +417,7 @@ class Ui_MainWindow(QMainWindow, object):
     def wallcast_hide_window_after_click(self):    #Скрывает окна (профиль и уведомления) при нажатии в любое место на экране
         self.box_settings.setVisible(False)
         self.box_notifications.setVisible(False)
+        self.box_tape_slection.setVisible(False)
         self.pushbutton_hide_window1.setVisible(False)
         self.pushbutton_hide_window2.setVisible(False)
     def wallcast_notification_button_click(self):

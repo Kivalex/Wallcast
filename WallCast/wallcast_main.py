@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
+import pyautogui
 
 import wallcast_functions
 
@@ -193,7 +194,7 @@ class Ui_MainWindow(QMainWindow, object):
 "padding: 2px;")
         self.pushButton_tape_3.setObjectName("pushButton_tape_3")
         self.box_settings = QtWidgets.QFrame(self.centralwidget)
-        self.box_settings.setGeometry(QtCore.QRect(1130, 70, 151, 221))
+        self.box_settings.setGeometry(QtCore.QRect(1110, 70, 171, 231))
         self.box_settings.setMouseTracking(False)
         self.box_settings.setVisible(False)
         self.box_settings.setStyleSheet("background-color: rgb(0, 0, 0);\n"
@@ -202,28 +203,28 @@ class Ui_MainWindow(QMainWindow, object):
         self.box_settings.setFrameShadow(QtWidgets.QFrame.Raised)
         self.box_settings.setObjectName("box_settings")
         self.nickname = QtWidgets.QLabel(self.box_settings)
-        self.nickname.setGeometry(QtCore.QRect(10, 0, 131, 31))
+        self.nickname.setGeometry(QtCore.QRect(10, 0, 151, 31))
         self.nickname.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
 "font: 16pt \"Bahnschrift SemiLight Condensed\";")
         self.nickname.setAlignment(QtCore.Qt.AlignCenter)
         self.nickname.setObjectName("nickname")
         self.support_button_profil = QtWidgets.QLabel(self.box_settings)
-        self.support_button_profil.setGeometry(QtCore.QRect(10, 40, 131, 31))
+        self.support_button_profil.setGeometry(QtCore.QRect(10, 40, 151, 31))
         self.support_button_profil.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
 "font: 16pt \"Bahnschrift SemiLight Condensed\";")
         self.support_button_profil.setAlignment(QtCore.Qt.AlignCenter)
         self.support_button_profil.setObjectName("support_button_profil")
         self.settings_button_profil = QtWidgets.QLabel(self.box_settings)
-        self.settings_button_profil.setGeometry(QtCore.QRect(10, 80, 131, 31))
+        self.settings_button_profil.setGeometry(QtCore.QRect(10, 80, 151, 31))
         self.settings_button_profil.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
 "font: 16pt \"Bahnschrift SemiLight Condensed\";")
         self.settings_button_profil.setAlignment(QtCore.Qt.AlignCenter)
         self.settings_button_profil.setObjectName("settings_button_profil")
         self.log_off_button_profil = QtWidgets.QLabel(self.box_settings)
-        self.log_off_button_profil.setGeometry(QtCore.QRect(10, 180, 131, 31))
+        self.log_off_button_profil.setGeometry(QtCore.QRect(10, 180, 151, 31))
         self.log_off_button_profil.setStyleSheet("color: rgb(170, 69, 52);\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
@@ -231,12 +232,26 @@ class Ui_MainWindow(QMainWindow, object):
         self.log_off_button_profil.setAlignment(QtCore.Qt.AlignCenter)
         self.log_off_button_profil.setObjectName("log_off_button_profil")
         self.change_account_button_profil = QtWidgets.QLabel(self.box_settings)
-        self.change_account_button_profil.setGeometry(QtCore.QRect(10, 140, 131, 31))
+        self.change_account_button_profil.setGeometry(QtCore.QRect(10, 140, 151, 31))
         self.change_account_button_profil.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
 "font: 16pt \"Bahnschrift SemiLight Condensed\";")
         self.change_account_button_profil.setAlignment(QtCore.Qt.AlignCenter)
         self.change_account_button_profil.setObjectName("change_account_button_profil")
+        self.pushbutton_hide_window1 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushbutton_hide_window1.setGeometry(QtCore.QRect(0, 290, 1281, 431))
+        self.pushbutton_hide_window1.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
+"border: none;")
+        self.pushbutton_hide_window1.setText("")
+        self.pushbutton_hide_window1.setObjectName("pushButton_2")
+        self.pushbutton_hide_window2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushbutton_hide_window2.setGeometry(QtCore.QRect(0, 70, 1131, 291))
+        self.pushbutton_hide_window2.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
+"border: none;")
+        self.pushbutton_hide_window2.setText("")
+        self.pushbutton_hide_window2.setObjectName("pushButton_3")
+        self.pushbutton_hide_window1.setVisible(False)
+        self.pushbutton_hide_window2.setVisible(False)
         self.frame = QtWidgets.QFrame(self.centralwidget)
         self.frame.setGeometry(QtCore.QRect(160, 60, 960, 661))
         self.frame.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -248,6 +263,8 @@ class Ui_MainWindow(QMainWindow, object):
         self.box_top_selection.raise_()
         self.box_settings.raise_()
         self.box_tape_slection.raise_()
+        self.pushbutton_hide_window1.raise_()
+        self.pushbutton_hide_window2.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -273,18 +290,24 @@ class Ui_MainWindow(QMainWindow, object):
         self.log_off_button_profil.setText(_translate("MainWindow", "Выйти"))
         self.change_account_button_profil.setText(_translate("MainWindow", "Сменить аккаунт"))
 
+
     '''Все функции кнопок'''
     def function_wallcast(self):    #отслеживание нажатия на кнопки
         self.pushButton_tape.clicked.connect(self.wallcast_tape_button_click)
         self.pushButton_profil.clicked.connect(self.wallcast_profil_top_button_click)
         self.pushButton_subscriptions.clicked.connect(self.wallcast_subscriptions_button_click)
         self.pushButton_messages.clicked.connect(self.wallcast_messages_button_click)
+        self.pushbutton_hide_window1.clicked.connect(self.hide_window_after_clicked)
+        self.pushbutton_hide_window2.clicked.connect(self.hide_window_after_clicked)
+
 
     def wallcast_tape_button_click(self):    #При нажатии на кнопку 'Лента' происходит
         self.box_tape_slection.setVisible(True)
         self.pushButton_tape_2.clicked.connect(self.wallcast_tape_2_button_click)
     def wallcast_profil_top_button_click(self):    #При нажатии на кнопку 'Профиль' происходит
         self.box_settings.setVisible(True)
+        self.pushbutton_hide_window1.setVisible(True)
+        self.pushbutton_hide_window2.setVisible(True)
     def wallcast_tape_2_button_click(self):    #При нажатии на кнопку 'Глобальная лента' происходит
         self.fon_subscriptions.setVisible(True)
         self.box_tape_slection.setVisible(False)
@@ -292,6 +315,10 @@ class Ui_MainWindow(QMainWindow, object):
         self.fon_subscriptions.setVisible(False)
     def wallcast_messages_button_click(self):    #При нажатии на кнопку 'Сообщения' происходит
         self.fon_subscriptions.setVisible(False)
+    def hide_window_after_clicked(self):    #Скрывает окно профиля при нажатии в любое место на экране
+        self.box_settings.setVisible(False)
+        self.pushbutton_hide_window1.setVisible(False)
+        self.pushbutton_hide_window2.setVisible(False)
 
 
 '''Запуск программы'''

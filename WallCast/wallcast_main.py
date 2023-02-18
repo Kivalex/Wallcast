@@ -414,7 +414,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.fon_subscriptions.setVisible(False)
     def wallcast_messages_button_click(self):    #При нажатии на кнопку 'Сообщения' происходит
         self.fon_subscriptions.setVisible(False)
-    def wallcast_hide_window_after_click(self):    #Скрывает окна (профиль и уведомления) при нажатии в любое место на экране
+    def wallcast_hide_window_after_click(self):    #Скрывает окна (профиль, уведомления, выбор ленты) при нажатии в любое место на экране
         self.box_settings.setVisible(False)
         self.box_notifications.setVisible(False)
         self.box_tape_slection.setVisible(False)

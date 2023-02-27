@@ -1,8 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit
-import pyautogui
 
-import wallcast_functions
+from wallcast_functions import *
+
 
 class Ui_MainWindow(QMainWindow, object):
     def setupUi(self, MainWindow):
@@ -13,7 +13,7 @@ class Ui_MainWindow(QMainWindow, object):
         MainWindow.setMaximumSize(QtCore.QSize(1280, 720))
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         MainWindow.setWindowTitle("WallCast")
-        icon = QtGui.QIcon("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\logo_wallcast.png")
+        icon = QtGui.QIcon(logo_wallcast)
         icon.addPixmap(QtGui.QPixmap(), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: rgb(157, 161, 170);")
@@ -30,7 +30,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.label_logo = QtWidgets.QLabel(self.box_top_selection)
         self.label_logo.setGeometry(QtCore.QRect(10, 0, 81, 71))
         self.label_logo.setText("")
-        self.label_logo.setPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\logo_wallcast.png"))
+        self.label_logo.setPixmap(QtGui.QPixmap(logo_wallcast))
         self.label_logo.setObjectName("label_logo")
         self.pushButton_tape = QtWidgets.QPushButton(self.box_top_selection)
         self.pushButton_tape.setGeometry(QtCore.QRect(110, 16, 141, 41))
@@ -76,7 +76,7 @@ class Ui_MainWindow(QMainWindow, object):
 "padding: 6px;")
         self.pushButton_profil.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\ava_wallcast.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(ava_wallcast), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_profil.setIcon(icon)
         self.pushButton_profil.setIconSize(QtCore.QSize(77, 54))
         self.pushButton_profil.setAutoRepeat(False)
@@ -92,7 +92,7 @@ class Ui_MainWindow(QMainWindow, object):
 "padding: 6px;")
         self.notifications_pushbutton.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\kolokol_wallcast.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(kolokol_wallcast), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.notifications_pushbutton.setIcon(icon1)
         self.notifications_pushbutton.setIconSize(QtCore.QSize(28, 28))
         self.notifications_pushbutton.setObjectName("pushButton")
@@ -142,7 +142,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.window_subscriptions_box_ava.setGeometry(QtCore.QRect(20, 10, 81, 81))
         self.window_subscriptions_box_ava.setStyleSheet("border-radius: 8px;")
         self.window_subscriptions_box_ava.setText("")
-        self.window_subscriptions_box_ava.setPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\logo_wallcast.png"))
+        self.window_subscriptions_box_ava.setPixmap(QtGui.QPixmap(logo_wallcast))
         self.window_subscriptions_box_ava.setObjectName("window_subscriptions_box_ava")
         self.window_subscriptions_box_textinfo = QtWidgets.QLabel(self.window_box_subscriptions_allinfo)
         self.window_subscriptions_box_textinfo.setGeometry(QtCore.QRect(100, 20, 441, 61))
@@ -272,7 +272,7 @@ class Ui_MainWindow(QMainWindow, object):
 "border-bottom-left-radius: 0px;")
         self.box_notifications_ava.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\ava_kivalex.jpg"),
+        icon3.addPixmap(QtGui.QPixmap(ava_kivalex),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.box_notifications_ava.setIcon(icon3)
         self.box_notifications_ava.setIconSize(QtCore.QSize(51, 51))
@@ -398,7 +398,7 @@ class Ui_MainWindow(QMainWindow, object):
                                                       "border-radius: 14px;")
         self.show_password_register.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\open_eye.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(open_eye), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.show_password_register.setIcon(icon4)
         self.show_password_register.setIconSize(QtCore.QSize(43, 43))
         self.show_password_register.setObjectName("showhide_password_register")
@@ -408,7 +408,7 @@ class Ui_MainWindow(QMainWindow, object):
                                                       "border-radius: 14px;")
         self.hide_password_register.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\closed_eye.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap(closed_eye), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.hide_password_register.setIcon(icon5)
         self.hide_password_register.setIconSize(QtCore.QSize(43, 43))
         self.hide_password_register.setObjectName("showhide_password_register")

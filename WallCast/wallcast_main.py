@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit
 import pyautogui
 
 import wallcast_functions
@@ -330,6 +330,88 @@ class Ui_MainWindow(QMainWindow, object):
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
+        self.register_login = QtWidgets.QFrame(self.centralwidget)
+        self.register_login.setGeometry(QtCore.QRect(360, 140, 561, 481))
+        self.register_login.setStyleSheet("background-color: rgb(158, 151, 182);")
+        self.register_login.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.register_login.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.register_login.setObjectName("register_login")
+        self.label_regLog = QtWidgets.QLabel(self.register_login)
+        self.label_regLog.setGeometry(QtCore.QRect(0, 20, 561, 91))
+        self.label_regLog.setStyleSheet("font: 28pt \"Bahnschrift SemiLight Condensed\";")
+        self.label_regLog.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_regLog.setObjectName("label_regLog")
+        self.username_register = QtWidgets.QLineEdit(self.register_login)
+        self.username_register.setGeometry(QtCore.QRect(70, 130, 361, 41))
+        self.username_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                             "border-radius: 14px;\n"
+                                             "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
+                                             "border: 3px solid green;")
+        self.username_register.setInputMask("")
+        self.username_register.setText("")
+        self.username_register.setMaxLength(32767)
+        self.username_register.setObjectName("username_register")
+        self.password_register = QtWidgets.QLineEdit(self.register_login)
+        self.password_register.setGeometry(QtCore.QRect(70, 190, 361, 41))
+        self.password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                             "border-radius: 14px;\n"
+                                             "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
+                                             "border: 3px solid red;")
+        self.password_register.setInputMask("")
+        self.password_register.setText("")
+        self.password_register.setMaxLength(32767)
+        self.password_register.setObjectName("password_register")
+        self.further_register = QtWidgets.QPushButton(self.register_login)
+        self.further_register.setGeometry(QtCore.QRect(380, 240, 111, 41))
+        self.further_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                            "font: 20pt \"Bahnschrift SemiLight Condensed\";\n"
+                                            "border-style: outset;\n"
+                                            "border-width: 2px;\n"
+                                            "border-radius: 14px;\n"
+                                            "border-color: beige;\n"
+                                            "font: bold 28px;\n"
+                                            "padding: 2px;")
+        self.further_register.setObjectName("further_register")
+        self.label_2 = QtWidgets.QLabel(self.register_login)
+        self.label_2.setGeometry(QtCore.QRect(80, 400, 401, 41))
+        self.label_2.setStyleSheet("font: 18pt \"Bahnschrift SemiLight Condensed\";")
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.login_registerWin = QtWidgets.QPushButton(self.register_login)
+        self.login_registerWin.setGeometry(QtCore.QRect(180, 430, 191, 31))
+        self.login_registerWin.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
+                                             "font: 20pt \"Bahnschrift SemiLight Condensed\";\n"
+                                             "color: rgb(0, 102, 0);")
+        self.login_registerWin.setObjectName("login_registerWin")
+        self.label_3 = QtWidgets.QLabel(self.register_login)
+        self.label_3.setGeometry(QtCore.QRect(70, 240, 221, 41))
+        self.label_3.setStyleSheet("font: 16pt \"Bahnschrift SemiLight Condensed\";")
+        self.label_3.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(self.register_login)
+        self.label_4.setGeometry(QtCore.QRect(70, 290, 421, 101))
+        self.label_4.setStyleSheet("font: 16pt \"Bahnschrift SemiLight Condensed\";")
+        self.label_4.setObjectName("label_4")
+        self.show_password_register = QtWidgets.QPushButton(self.register_login)
+        self.show_password_register.setGeometry(QtCore.QRect(450, 190, 41, 41))
+        self.show_password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                                      "border-radius: 14px;")
+        self.show_password_register.setText("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\open_eye.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.show_password_register.setIcon(icon4)
+        self.show_password_register.setIconSize(QtCore.QSize(43, 43))
+        self.show_password_register.setObjectName("showhide_password_register")
+        self.hide_password_register = QtWidgets.QPushButton(self.register_login)
+        self.hide_password_register.setGeometry(QtCore.QRect(450, 190, 41, 41))
+        self.hide_password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                                      "border-radius: 14px;")
+        self.hide_password_register.setText("")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap("C:\\Users\\PC\\PycharmProjects\\pythonProject\\WallCast\\closed_eye.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.hide_password_register.setIcon(icon5)
+        self.hide_password_register.setIconSize(QtCore.QSize(43, 43))
+        self.hide_password_register.setObjectName("showhide_password_register")
         self.frame.raise_()
         self.fon_subscriptions.raise_()
         self.box_top_selection.raise_()
@@ -338,6 +420,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushbutton_hide_window1.raise_()
         self.pushbutton_hide_window2.raise_()
         self.box_notifications.raise_()
+        self.register_login.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -382,7 +465,17 @@ class Ui_MainWindow(QMainWindow, object):
                                            "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Тема:</p>\n"
                                            "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Описание: шцуипшгзгуиывтолитвылфмлдьцфшурпуццуппцупуцпуупцупцупц</p></body></html>"))
         self.box_notifications_name2.setText(_translate("MainWindow", "kr7a-J"))
-
+        self.label_regLog.setText(_translate("MainWindow", "Зарегестрируйте аккаунт"))
+        self.username_register.setPlaceholderText(_translate("MainWindow", "Имя пользователя"))
+        self.password_register.setPlaceholderText(_translate("MainWindow", "Пароль"))
+        self.further_register.setText(_translate("MainWindow", "Далее"))
+        self.label_2.setText(_translate("MainWindow", "Уже есть аккаунт?"))
+        self.login_registerWin.setText(_translate("MainWindow", "войти"))
+        self.label_3.setText(_translate("MainWindow", "Пароль должен:"))
+        self.label_4.setText(_translate("MainWindow", "<p>Состоять из букв латинского алфавита (A-z)<br>\n"
+                                                      "Длина пароля должна быть от 6 до 18 символов<br>\n"
+                                                      "Минимум 2 специальных знака(!@#^*)<br>\n"
+                                                      "Состоять из строчных и прописных букв</p>"))
 
     '''Все функции кнопок'''
     def function_wallcast(self):    #отслеживание нажатия на кнопки
@@ -394,6 +487,9 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushbutton_hide_window2.clicked.connect(self.wallcast_hide_window_after_click)
         self.notifications_pushbutton.clicked.connect(self.wallcast_notification_button_click)
         self.pushButton_tape_2.clicked.connect(self.wallcast_tape_2_button_click)
+        self.show_password_register.clicked.connect(self.wallcast_show_password)
+        self.hide_password_register.clicked.connect(self.wallcast_hide_password)
+        self.password_register.textEdited.connect(self.wallcast_password_check)
 
 
     def wallcast_tape_button_click(self):    #При нажатии на кнопку 'Лента' происходит
@@ -426,7 +522,16 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushbutton_hide_window2.setGeometry(QtCore.QRect(0, 0, 991, 291))
         self.pushbutton_hide_window1.setVisible(True)
         self.pushbutton_hide_window2.setVisible(True)
-
+    def wallcast_show_password(self):
+        self.show_password_register.setVisible(False)
+        self.hide_password_register.setVisible(True)
+        self.password_register.setEchoMode(QLineEdit.Normal)
+    def wallcast_hide_password(self):
+        self.hide_password_register.setVisible(False)
+        self.show_password_register.setVisible(True)
+        self.password_register.setEchoMode(QLineEdit.Password)
+    def wallcast_password_check(self, password):
+        print(password)
 
 '''Запуск программы'''
 if __name__ == "__main__":

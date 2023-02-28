@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit
-import sys
 
 from wallcast_functions import *
 
@@ -532,10 +531,20 @@ class Ui_MainWindow(QMainWindow, object):
         self.show_password_register.setVisible(True)
         self.password_register.setEchoMode(QLineEdit.Password)
     def wallcast_password_check(self, password):
-        print(password)
+        if validate_password(password) == True:
+            self.password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                                 "border-radius: 14px;\n"
+                                                 "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
+                                                 "border: 3px solid green;")
+        else:
+            self.password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                                 "border-radius: 14px;\n"
+                                                 "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
+                                                 "border: 3px solid red;")
 
 '''Запуск программы'''
 if __name__ == "__main__":
+    import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

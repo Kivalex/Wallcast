@@ -20,6 +20,8 @@ def validate_password(text):
         return False
     if not re.search(r'[a-zA-Z]', text):  # Проверка наличия латинской буквы
         return False
+    if not re.search(r'[A-Z]', text):  # Проверка наличия латинской буквы
+        return False
     if len(text) < 6 or len(text) > 18:
         return False
     return True

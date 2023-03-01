@@ -432,6 +432,14 @@ class Ui_MainWindow(QMainWindow, object):
         self.hide_password_register.setIcon(icon5)
         self.hide_password_register.setIconSize(QtCore.QSize(43, 43))
         self.hide_password_register.setObjectName("showhide_password_register")
+        self.incorrect_data_for_registration = QtWidgets.QLabel(self.register_login)
+        self.incorrect_data_for_registration.setGeometry(QtCore.QRect(160, 226, 201, 31))
+        self.incorrect_data_for_registration.setStyleSheet("color: red;\n"
+                                 "font: 13pt \"Bahnschrift SemiLight Condensed\";\n"
+                                 "background-color: rgb(255, 255, 255, 0)")
+        self.incorrect_data_for_registration.setAlignment(QtCore.Qt.AlignCenter)
+        self.incorrect_data_for_registration.setObjectName("label")
+        self.incorrect_data_for_registration.setVisible(False)
         self.frame.raise_()
         self.fon_subscriptions.raise_()
         self.box_top_selection.raise_()
@@ -496,6 +504,7 @@ class Ui_MainWindow(QMainWindow, object):
                                                       "Длина пароля должна быть от 6 до 18 символов<br>\n"
                                                       "Минимум 2 специальных знака(!@#^*)<br>\n"
                                                       "Состоять из строчных и прописных букв</p>"))
+        self.incorrect_data_for_registration.setText(_translate("MainWindow", "Вы ввели данные не правильно!"))
 
     '''Все функции кнопок и тп'''
     def function_wallcast(self):
@@ -542,15 +551,17 @@ class Ui_MainWindow(QMainWindow, object):
         self.box_notifications.setVisible(True)
         self.pushbutton_hide_window1.setVisible(True)
         self.pushbutton_hide_window2.setVisible(True)
-    def wallcast_show_password(self):
+
+    '''Регистрационное окно'''
+    def wallcast_show_password(self):   #Показать пароль
         self.show_password_register.setVisible(False)
         self.hide_password_register.setVisible(True)
         self.password_register.setEchoMode(QLineEdit.Normal)
-    def wallcast_hide_password(self):
+    def wallcast_hide_password(self):   #Скрыть пароль
         self.hide_password_register.setVisible(False)
         self.show_password_register.setVisible(True)
         self.password_register.setEchoMode(QLineEdit.Password)
-    def wallcast_password_check(self, password):
+    def wallcast_password_check(self, password):    #Проверка пароля
         if validate_password(password) == True:
             self.password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                                  "border-radius: 14px;\n"
@@ -562,12 +573,12 @@ class Ui_MainWindow(QMainWindow, object):
                                                  "border-radius: 14px;\n"
                                                  "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
                                                  "border: 3px solid red;")
-    def wallcast_further_register_clicked(self):
+    def wallcast_further_register_clicked(self):    #Активация кнопки "Далее"
         print(self.password)
         if self.password != None:
             self.register_login.setVisible(False)
         else:
-            pass
+            self.incorrect_data_for_registration.setVisible(True)
 
 '''Запуск программы'''
 if __name__ == "__main__":

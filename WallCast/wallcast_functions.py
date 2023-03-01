@@ -25,3 +25,6 @@ def validate_password(text):
     if len(text) < 6 or len(text) > 18:
         return False
     return True
+
+def validate_name(text):
+    pass

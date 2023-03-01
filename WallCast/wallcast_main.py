@@ -1,10 +1,31 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit
-
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit, QVBoxLayout, QGraphicsScene, QGraphicsView, \
+    QGraphicsBlurEffect
 from wallcast_functions import *
 
 
 class Ui_MainWindow(QMainWindow, object):
+    def __init__(self):
+        super().__init__()
+        self.password = None
+
+        self.title = "Эффекты"
+        self.top = 200
+        self.left = 500
+        self.width = 400
+        self.height = 400
+
+        self.setWindowTitle(self.title)
+        # Задание местоположения и размера окна
+        self.setGeometry(self.left, self.top, self.width, self.height)
+        # Создание графической сцены
+        self.scene = QGraphicsScene()
+        # Создание инструмента для отрисовки графической сцены
+        self.graphicView = QGraphicsView(self.scene, self)
+        # Задание местоположения и размера графической сцены
+        self.graphicView.setGeometry(0, 0, self.width, self.height)
+
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
@@ -103,7 +124,6 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushButton_tape.raise_()
         self.notifications_pushbutton.raise_()
         self.fon_subscriptions = QtWidgets.QFrame(self.centralwidget)
-        self.fon_subscriptions.setVisible(False)
         self.fon_subscriptions.setGeometry(QtCore.QRect(160, 61, 960, 661))
         self.fon_subscriptions.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.fon_subscriptions.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -477,8 +497,9 @@ class Ui_MainWindow(QMainWindow, object):
                                                       "Минимум 2 специальных знака(!@#^*)<br>\n"
                                                       "Состоять из строчных и прописных букв</p>"))
 
-    '''Все функции кнопок'''
-    def function_wallcast(self):    #отслеживание нажатия на кнопки
+    '''Все функции кнопок и тп'''
+    def function_wallcast(self):
+        '''Функции всех кнопок'''
         self.pushButton_tape.clicked.connect(self.wallcast_tape_button_click)
         self.pushButton_profil.clicked.connect(self.wallcast_profil_top_button_click)
         self.pushButton_subscriptions.clicked.connect(self.wallcast_subscriptions_button_click)
@@ -489,8 +510,9 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushButton_tape_2.clicked.connect(self.wallcast_tape_2_button_click)
         self.show_password_register.clicked.connect(self.wallcast_show_password)
         self.hide_password_register.clicked.connect(self.wallcast_hide_password)
+        self.further_register.clicked.connect(self.wallcast_further_register_clicked)
+        '''Функции текстовых значений'''
         self.password_register.textEdited.connect(self.wallcast_password_check)
-
 
     def wallcast_tape_button_click(self):    #При нажатии на кнопку 'Лента' происходит
         self.box_tape_slection.setVisible(True)
@@ -516,10 +538,8 @@ class Ui_MainWindow(QMainWindow, object):
         self.box_tape_slection.setVisible(False)
         self.pushbutton_hide_window1.setVisible(False)
         self.pushbutton_hide_window2.setVisible(False)
-    def wallcast_notification_button_click(self):
+    def wallcast_notification_button_click(self):   #Закрытие окна при клике в любую точку
         self.box_notifications.setVisible(True)
-        self.pushbutton_hide_window1.setGeometry(QtCore.QRect(0, 340, 1281, 381))
-        self.pushbutton_hide_window2.setGeometry(QtCore.QRect(0, 0, 991, 291))
         self.pushbutton_hide_window1.setVisible(True)
         self.pushbutton_hide_window2.setVisible(True)
     def wallcast_show_password(self):
@@ -536,11 +556,18 @@ class Ui_MainWindow(QMainWindow, object):
                                                  "border-radius: 14px;\n"
                                                  "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
                                                  "border: 3px solid green;")
+            self.password = password
         else:
             self.password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                                  "border-radius: 14px;\n"
                                                  "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
                                                  "border: 3px solid red;")
+    def wallcast_further_register_clicked(self):
+        print(self.password)
+        if self.password != None:
+            self.register_login.setVisible(False)
+        else:
+            pass
 
 '''Запуск программы'''
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit, QVBoxLayout, QGraphicsScene, QGraphicsView, \
     QGraphicsBlurEffect
@@ -582,7 +583,6 @@ class Ui_MainWindow(QMainWindow, object):
 
 '''Запуск программы'''
 if __name__ == "__main__":
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

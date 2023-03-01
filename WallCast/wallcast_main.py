@@ -10,22 +10,6 @@ class Ui_MainWindow(QMainWindow, object):
         super().__init__()
         self.password = None
 
-        self.title = "Эффекты"
-        self.top = 200
-        self.left = 500
-        self.width = 400
-        self.height = 400
-
-        self.setWindowTitle(self.title)
-        # Задание местоположения и размера окна
-        self.setGeometry(self.left, self.top, self.width, self.height)
-        # Создание графической сцены
-        self.scene = QGraphicsScene()
-        # Создание инструмента для отрисовки графической сцены
-        self.graphicView = QGraphicsView(self.scene, self)
-        # Задание местоположения и размера графической сцены
-        self.graphicView.setGeometry(0, 0, self.width, self.height)
-
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")

@@ -77,4 +77,3 @@ def record_audio(filename):
     wf.close()
 
     print("Recording saved as", filename)
-record_audio("my_audio.wav")

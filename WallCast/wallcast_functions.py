@@ -2,6 +2,8 @@ import getpass
 import os
 import re
 
+from WallCast.wallcast_BD import *
+
 import pyaudio
 import wave
 import keyboard
@@ -29,10 +31,6 @@ def validate_password(text):
     if len(text) < 6 or len(text) > 18:
         return False
     return True
-
-'''Проверка имени на доступность'''
-def validate_name(text):
-    print(text)
 
 '''Запись аудио'''
 def record_audio(filename):
@@ -77,3 +75,31 @@ def record_audio(filename):
     wf.close()
 
     print("Recording saved as", filename)
+
+'''Добавление пользователя в базу данных'''
+def new_user(username, password):
+    new_user = User(username=username, password=password)
+    session.add(new_user)
+    session.commit()
+
+    users = session.query(User).all()
+    for user in users:
+        print(user.username, user.password)
+
+'''Проверка наличия имени пользователя в базе данных'''
+def validate_name(text):
+    existing_user = session.query(User).filter_by(username=text).first()
+    if existing_user:
+        return False
+    else:
+        return True
+
+def delet_user(name):
+    user_to_delete = session.query(User).filter_by(username=name).first()
+    if user_to_delete:
+        session.delete(user_to_delete)
+        session.commit()
+        print(f'Пользователь {user_to_delete.username} удален из базы данных')
+    else:
+        print('Пользователь с таким именем не найден в базе данных')
+

@@ -426,6 +426,10 @@ class Ui_MainWindow(QMainWindow, object):
         self.incorrect_data_for_registration.setAlignment(QtCore.Qt.AlignCenter)
         self.incorrect_data_for_registration.setObjectName("label")
         self.incorrect_data_for_registration.setVisible(False)
+        self.blur = QtWidgets.QWidget(self.centralwidget)
+        self.blur.setGeometry(QtCore.QRect(0, -1, 1281, 721))
+        self.blur.setStyleSheet('background-color: rgb(255, 255, 255, 0);')
+        self.blur.setObjectName('blur')
         self.frame.raise_()
         self.fon_subscriptions.raise_()
         self.box_top_selection.raise_()
@@ -434,6 +438,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushbutton_hide_window1.raise_()
         self.pushbutton_hide_window2.raise_()
         self.box_notifications.raise_()
+        self.blur.raise_()
         self.register_login.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -460,9 +465,6 @@ class Ui_MainWindow(QMainWindow, object):
         self.change_account_button_profil.setText(_translate("MainWindow", "Сменить аккаунт"))
         self.box_notifications_name1.setText(_translate("MainWindow", "Kivalex"))
         self.textEdit.setHtml(_translate("MainWindow",
-                                         "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                         "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                         "p, li { white-space: pre-wrap; }\n"
                                          "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
                                          "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Название:</p>\n"
                                          "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Тема:</p>\n"
@@ -515,6 +517,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushbutton_hide_window1.setVisible(True)
         self.pushbutton_hide_window2.setVisible(True)
     def wallcast_profil_top_button_click(self):    #При нажатии на кнопку 'Профиль' происходит
+        self.box_notifications.setVisible(False)
         self.box_settings.setVisible(True)
         self.pushbutton_hide_window1.setGeometry(QtCore.QRect(0, 290, 1281, 431))
         self.pushbutton_hide_window2.setGeometry(QtCore.QRect(0, 70, 1131, 291))
@@ -534,6 +537,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushbutton_hide_window1.setVisible(False)
         self.pushbutton_hide_window2.setVisible(False)
     def wallcast_notification_button_click(self):   #Закрытие окна при клике в любую точку
+        self.box_settings.setVisible(False)
         self.box_notifications.setVisible(True)
         self.pushbutton_hide_window1.setVisible(True)
         self.pushbutton_hide_window2.setVisible(True)
@@ -573,7 +577,7 @@ class Ui_MainWindow(QMainWindow, object):
                                                  "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
                                                  "border: 3px solid red;")
     def wallcast_further_register_clicked(self):    #Активация кнопки "Далее"
-        if self.password != None and validate_password(self.password)==True:
+        if self.password != None and validate_password(self.password)==True and validate_name(self.name)==True:
             self.register_login.setVisible(False)
             self.nickname.setText(self.name)
             new_user(self.name, self.password)

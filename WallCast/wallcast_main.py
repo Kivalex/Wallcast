@@ -9,6 +9,7 @@ class Ui_MainWindow(QMainWindow, object):
     def __init__(self):
         super().__init__()
         self.password = None
+        self.name = None
 
 
     def setupUi(self, MainWindow):
@@ -351,7 +352,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.username_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                              "border-radius: 14px;\n"
                                              "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
-                                             "border: 3px solid green;")
+                                             "border: 3px solid red;")
         self.username_register.setInputMask("")
         self.username_register.setText("")
         self.username_register.setMaxLength(32767)
@@ -453,7 +454,6 @@ class Ui_MainWindow(QMainWindow, object):
                                                                                    "  Стоимость:"))
         self.pushButton_tape_2.setText(_translate("MainWindow", "Глобальная лента"))
         self.pushButton_tape_3.setText(_translate("MainWindow", "Лента подписок"))
-        self.nickname.setText(_translate("MainWindow", "Q1rD"))
         self.support_button_profil.setText(_translate("MainWindow", "Поддержка"))
         self.settings_button_profil.setText(_translate("MainWindow", "Настройки"))
         self.log_off_button_profil.setText(_translate("MainWindow", "Выйти"))
@@ -561,11 +561,22 @@ class Ui_MainWindow(QMainWindow, object):
                                                  "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
                                                  "border: 3px solid red;")
     def wallcast_name_check(self, text):
-        validate_name(text)
+        self.name = text
+        if validate_name(text) == True and self.name!='':
+            self.username_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                                 "border-radius: 14px;\n"
+                                                 "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
+                                                 "border: 3px solid green;")
+        else:
+            self.username_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                                 "border-radius: 14px;\n"
+                                                 "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
+                                                 "border: 3px solid red;")
     def wallcast_further_register_clicked(self):    #Активация кнопки "Далее"
         if self.password != None and validate_password(self.password)==True:
             self.register_login.setVisible(False)
-            print(self.password)
+            self.nickname.setText(self.name)
+            new_user(self.name, self.password)
         else:
             self.incorrect_data_for_registration.setVisible(True)
 

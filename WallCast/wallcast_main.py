@@ -547,21 +547,22 @@ class Ui_MainWindow(QMainWindow, object):
         self.show_password_register.setVisible(True)
         self.password_register.setEchoMode(QLineEdit.Password)
     def wallcast_password_check(self, password):    #Проверка пароля
+        self.password = password
         if validate_password(password) == True:
             self.password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                                  "border-radius: 14px;\n"
                                                  "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
                                                  "border: 3px solid green;")
-            self.password = password
+            self.incorrect_data_for_registration.setVisible(False)
         else:
             self.password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                                  "border-radius: 14px;\n"
                                                  "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
                                                  "border: 3px solid red;")
     def wallcast_further_register_clicked(self):    #Активация кнопки "Далее"
-        print(self.password)
-        if self.password != None:
+        if self.password != None and validate_password(self.password)==True:
             self.register_login.setVisible(False)
+            print(self.password)
         else:
             self.incorrect_data_for_registration.setVisible(True)
 

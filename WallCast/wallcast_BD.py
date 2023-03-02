@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, Table, MetaData
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -21,6 +21,10 @@ class User(Base):
 Base.metadata.create_all(engine)
 
 # Получаем всех пользователей из базы данных
-users = session.query(User).all()
-for user in users:
-    print(user.id, user.username, user.password)
+def BD_list():
+    users = session.query(User).all()
+    print('\n__________________')
+    print('|  ', 'База Данных', ' |')
+    for user in users:
+        print('|', user.id, '|', user.username, '|', user.password, '|')
+    print('------------------')

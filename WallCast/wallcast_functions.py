@@ -32,7 +32,7 @@ def validate_password(text):
 
 '''Проверка имени на доступность'''
 def validate_name(text):
-    pass
+    print(text)
 
 '''Запись аудио'''
 def record_audio(filename):
@@ -50,7 +50,7 @@ def record_audio(filename):
                     input=True,
                     frames_per_buffer=CHUNK)
 
-    print("Нажмите клавишу для начала записи")
+    print("Нажмите клавишу enter для начала записи")
     keyboard.wait('enter')
 
     frames = []

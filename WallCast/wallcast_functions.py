@@ -78,16 +78,6 @@ def record_audio(filename):
 
     print("Recording saved as", filename)
 
-'''Добавление пользователя в базу данных'''
-def new_user(username, password):
-    new_user = User(username=username, password=password)
-    session.add(new_user)
-    session.commit()
-
-    users = session.query(User).all()
-    for user in users:
-        print(user.username, user.password)
-
 '''Проверка наличия имени пользователя в базе данных'''
 def validate_name(text):
     if not re.search(r'[a-zA-Z]', text):  # Проверка наличия латинской буквы
@@ -99,6 +89,16 @@ def validate_name(text):
         return False
     else:
         return True
+
+'''Функции Базы Данных'''
+def new_user(username, password):   #Добавление нового пользователя
+    new_user = User(username=username, password=password)
+    session.add(new_user)
+    session.commit()
+
+    users = session.query(User).all()
+    for user in users:
+        print(user.username, user.password)
 
 def delet_user(name):   # Удаляет пользователя из БД
     user_to_delete = session.query(User).filter_by(username=name).first()

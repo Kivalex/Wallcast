@@ -8,15 +8,15 @@ import pyaudio
 import wave
 import keyboard
 
+os.path.abspath('logo_wallcast.png')
+
 '''Получение пути к файлам'''
-disk = os.getenv("SystemDrive")
-user_login = getpass.getuser()
-logo_wallcast = str(str(disk) + "\\\\" + "Users" + "\\\\" + str(user_login) + "\\\\PycharmProjects\\\\pythonProject\\\\WallCast\\\\logo_wallcast.png")
-ava_wallcast = str(str(disk) + "\\\\" + "Users" + "\\\\" + str(user_login) + "\\\\PycharmProjects\\\\pythonProject\\\\WallCast\\\\ava_wallcast.png")
-kolokol_wallcast = str(str(disk) + "\\\\" + "Users" + "\\\\" + str(user_login) + "\\\\PycharmProjects\\\\pythonProject\\\\WallCast\\\\kolokol_wallcast.png")
-ava_kivalex = str(str(disk) + "\\\\" + "Users" + "\\\\" + str(user_login) + "\\\\PycharmProjects\\\\pythonProject\\\\WallCast\\\\ava_kivalex.jpg")
-open_eye = str(str(disk) + "\\\\" + "Users" + "\\\\" + str(user_login) + "\\\\PycharmProjects\\\\pythonProject\\\\WallCast\\\\open_eye.png")
-closed_eye = str(str(disk) + "\\\\" + "Users" + "\\\\" + str(user_login) + "\\\\PycharmProjects\\\\pythonProject\\\\WallCast\\\\closed_eye.png")
+logo_wallcast = str(os.path.abspath('logo_wallcast.png'))
+ava_wallcast = str(os.path.abspath('ava_wallcast.png'))
+kolokol_wallcast = str(os.path.abspath('kolokol_wallcast.png'))
+ava_kivalex = str(os.path.abspath('ava_wallcast.png'))
+open_eye = str(os.path.abspath('open_eye.png'))
+closed_eye = str(os.path.abspath('closed_eye.png'))
 
 '''Проверка пароля на наличие необходимых знаков'''
 def validate_password(text):
@@ -25,6 +25,8 @@ def validate_password(text):
     if not re.search(r'[!@#^*]', text):  # Проверка наличия специального символа
         return False
     if not re.search(r'[a-zA-Z]', text):  # Проверка наличия латинской буквы
+        return False
+    if re.search(r'[а-яА-Я]', text):    # Проверка наличия русских букв
         return False
     if not re.search(r'[A-Z]', text):  # Проверка наличия латинской буквы
         return False
@@ -88,13 +90,17 @@ def new_user(username, password):
 
 '''Проверка наличия имени пользователя в базе данных'''
 def validate_name(text):
-    existing_user = session.query(User).filter_by(username=text).first()
+    if not re.search(r'[a-zA-Z]', text):  # Проверка наличия латинской буквы
+        return False
+    if re.search(r'[а-яА-Я]', text):    # Проверка наличия русских букв
+        return False
+    existing_user = session.query(User).filter_by(username=text).first()    #Проверка в БД
     if existing_user:
         return False
     else:
         return True
 
-def delet_user(name):
+def delet_user(name):   # Удаляет пользователя из БД
     user_to_delete = session.query(User).filter_by(username=name).first()
     if user_to_delete:
         session.delete(user_to_delete)
@@ -102,4 +108,3 @@ def delet_user(name):
         print(f'Пользователь {user_to_delete.username} удален из базы данных')
     else:
         print('Пользователь с таким именем не найден в базе данных')
-

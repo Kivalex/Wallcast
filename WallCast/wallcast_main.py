@@ -673,11 +673,15 @@ class Ui_MainWindow(QMainWindow, object):
 
     '''Вход в аккаунт'''
     def wallcast_log_in(self):
+        self.password_log_in.setText('')
+        self.username_log_in.setText('')
         self.register.setVisible(False)
         self.log_in.setVisible(True)
     def wallcast_log_in_back(self):
         self.log_in.setVisible(False)
         self.register.setVisible(True)
+        self.password_register.setText('')
+        self.username_register.setText('')
     def wallcast_log_in_password_check(self, text):
         self.log_in_password = text
         print(self.log_in_password)

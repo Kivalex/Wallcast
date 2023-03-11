@@ -1,6 +1,6 @@
-from sqlalchemy import create_engine, Column, Integer, String, Table, MetaData
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 engine = create_engine('sqlite:///users.db', echo=True)
 Session = sessionmaker(bind=engine)
@@ -28,3 +28,5 @@ def BD_list():
     for user in users:
         print('|', user.id, '|', user.username, '|', user.password, '|')
     print('------------------')
+
+BD_list()

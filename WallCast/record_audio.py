@@ -1,4 +1,3 @@
-import sys
 import wave
 import pyaudio
 from PyQt5.QtCore import Qt
@@ -80,9 +79,3 @@ class RecordAudio(QWidget):
         self.button.setText("Запись")
         self.button.clicked.disconnect(self.stop_recording)
         self.button.clicked.connect(self.start_recording)
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = RecordAudio()
-    sys.exit(app.exec_())

@@ -41,50 +41,6 @@ def wallcast_log_in_name_check(text):
     else:
         return False
 
-'''Запись аудио'''
-def record_audio(filename):
-    CHUNK = 1024
-    FORMAT = pyaudio.paInt16
-    CHANNELS = 1
-    RATE = 44100
-    RECORD_SECONDS = 600
-
-    p = pyaudio.PyAudio()
-
-    stream = p.open(format=FORMAT,
-                    channels=CHANNELS,
-                    rate=RATE,
-                    input=True,
-                    frames_per_buffer=CHUNK)
-
-    print("Нажмите клавишу enter для начала записи")
-    keyboard.wait('enter')
-
-    frames = []
-
-
-    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
-        data = stream.read(CHUNK)
-        frames.append(data)
-        if keyboard.is_pressed('q'):
-            print("Recording stopped.")
-            break
-
-    stream.stop_stream()
-    stream.close()
-    p.terminate()
-
-    print("Saving recording...")
-
-    wf = wave.open(filename, 'wb')
-    wf.setnchannels(CHANNELS)
-    wf.setsampwidth(p.get_sample_size(FORMAT))
-    wf.setframerate(RATE)
-    wf.writeframes(b''.join(frames))
-    wf.close()
-
-    print("Recording saved as", filename)
-
 '''Проверка имени пользователя на правильность'''
 def validate_name(text):
     if not re.search(r'[a-zA-Z]', text):  # Проверка наличия латинской буквы

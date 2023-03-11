@@ -1,8 +1,7 @@
-import getpass
 import os
 import re
 
-from WallCast.wallcast_BD import *
+from wallcast_BD import *
 
 import pyaudio
 import wave
@@ -33,6 +32,14 @@ def validate_password(text):
     if len(text) < 6 or len(text) > 18:
         return False
     return True
+
+
+def wallcast_log_in_name_check(text):
+    nicname_in_BD = session.query(User).filter_by(username=text).first()
+    if nicname_in_BD:
+        return True
+    else:
+        return False
 
 '''Запись аудио'''
 def record_audio(filename):
@@ -78,7 +85,7 @@ def record_audio(filename):
 
     print("Recording saved as", filename)
 
-'''Проверка наличия имени пользователя в базе данных'''
+'''Проверка имени пользователя на правильность'''
 def validate_name(text):
     if not re.search(r'[a-zA-Z]', text):  # Проверка наличия латинской буквы
         return False
@@ -87,11 +94,12 @@ def validate_name(text):
     existing_user = session.query(User).filter_by(username=text).first()    #Проверка в БД
     if existing_user:
         return False
+
     else:
         return True
 
 '''Функции Базы Данных'''
-def new_user(username, password):   #Добавление нового пользователя
+def new_user(username, password):   #Добавление нового пользователя в БД
     new_user = User(username=username, password=password)
     session.add(new_user)
     session.commit()

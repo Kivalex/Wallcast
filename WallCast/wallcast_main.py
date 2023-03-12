@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow, QLineEdit
 
 from wallcast_functions import *
 from wallcast_BD import *
+from account import *
 
 class Ui_MainWindow(QMainWindow, object):
     def __init__(self):
@@ -12,7 +13,6 @@ class Ui_MainWindow(QMainWindow, object):
         self.name = None
         self.log_in_password = None
         self.log_in_name = None
-
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -405,9 +405,9 @@ class Ui_MainWindow(QMainWindow, object):
         self.show_password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                                       "border-radius: 14px;")
         self.show_password_register.setText("")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(open_eye), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.show_password_register.setIcon(icon4)
+        self.open_eye = QtGui.QIcon()
+        self.open_eye.addPixmap(QtGui.QPixmap(open_eye), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.show_password_register.setIcon(self.open_eye)
         self.show_password_register.setIconSize(QtCore.QSize(43, 43))
         self.show_password_register.setObjectName("showhide_password_register")
         self.hide_password_register = QtWidgets.QPushButton(self.register)
@@ -415,9 +415,9 @@ class Ui_MainWindow(QMainWindow, object):
         self.hide_password_register.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                                       "border-radius: 14px;")
         self.hide_password_register.setText("")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(closed_eye), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.hide_password_register.setIcon(icon5)
+        self.closed_eye = QtGui.QIcon()
+        self.closed_eye.addPixmap(QtGui.QPixmap(closed_eye), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.hide_password_register.setIcon(self.closed_eye)
         self.hide_password_register.setIconSize(QtCore.QSize(43, 43))
         self.hide_password_register.setObjectName("showhide_password_register")
         self.incorrect_data_for_registration = QtWidgets.QLabel(self.register)
@@ -493,14 +493,47 @@ class Ui_MainWindow(QMainWindow, object):
                                               "font: bold 28px;\n"
                                               "padding: 2px;")
         self.back_log_in.setObjectName("further_login")
-        self.showhide_password_log_in = QtWidgets.QPushButton(self.log_in)
-        self.showhide_password_log_in.setGeometry(QtCore.QRect(450, 190, 41, 41))
-        self.showhide_password_log_in.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.show_password_log_in = QtWidgets.QPushButton(self.log_in)
+        self.show_password_log_in.setGeometry(QtCore.QRect(450, 190, 41, 41))
+        self.show_password_log_in.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                                         "border-radius: 14px;")
-        self.showhide_password_log_in.setText("")
-        self.showhide_password_log_in.setIcon(icon4)
-        self.showhide_password_log_in.setIconSize(QtCore.QSize(43, 43))
-        self.showhide_password_log_in.setObjectName("showhide_password_login")
+        self.show_password_log_in.setText("")
+        self.show_password_log_in.setIcon(self.open_eye)
+        self.show_password_log_in.setIconSize(QtCore.QSize(43, 43))
+        self.show_password_log_in.setObjectName("show_password_login")
+        self.show_password_log_in.setVisible(False)
+        self.hide_password_log_in = QtWidgets.QPushButton(self.log_in)
+        self.hide_password_log_in.setGeometry(QtCore.QRect(450, 190, 41, 41))
+        self.hide_password_log_in.setIconSize(QtCore.QSize(43, 43))
+        self.hide_password_log_in.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                                        "border-radius: 14px;")
+        self.hide_password_log_in.setText("")
+        self.hide_password_log_in.setIcon(self.closed_eye)
+        self.loading = QtWidgets.QFrame(self.centralwidget)
+        self.loading.setGeometry(QtCore.QRect(380, 230, 521, 301))
+        self.loading.setStyleSheet("background-color: rgb(158, 151, 182);")
+        self.loading.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.loading.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.loading.setObjectName("loading")
+        self.loading.setVisible(False)
+
+        self.loading_label = QtWidgets.QLabel(self.loading)
+        self.loading_label.setGeometry(QtCore.QRect(0, 30, 521, 91))
+        self.loading_label.setStyleSheet("font: 34pt \"Bahnschrift SemiLight Condensed\";")
+        self.loading_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.loading_label.setObjectName("loading_label")
+        self.loading_gif = QtWidgets.QLabel(self.loading)
+        self.loading_gif.setGeometry(QtCore.QRect(200, 140, 120, 120))
+        self.loading_gif.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
+                                       "border: none;")
+        self.loading_gif.setText("")
+        self.loading_gif.setObjectName("loading_gif")
+        self.loading_gif.setScaledContents(True)
+        path = "C:\\Users\\PC\\Downloads\\loading.gif"
+        gif = QtGui.QMovie(path)
+        self.loading_gif.setMovie(gif)
+        gif.start()
+
 
         self.frame.raise_()
         self.fon_subscriptions.raise_()
@@ -513,14 +546,24 @@ class Ui_MainWindow(QMainWindow, object):
         self.blur.raise_()
         self.register.raise_()
         self.log_in.raise_()
+        self.loading.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
-#
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
         self.function_wallcast()
+
+        try:
+            if show_account_data() != False:
+                name = show_account_data()
+                self.nickname.setText(name)
+                self.register.setVisible(False)
+                self.blur.setVisible(False)
+        except:
+            pass
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -572,6 +615,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.further_log_in.setText(_translate("MainWindow", "Далее"))
         self.back_log_in.setText(_translate("MainWindow", "Обратно"))
         self.incorrect_data_for_log_in.setText(_translate("MainWindow", "Вы ввели данные неправильно!"))
+        self.loading_label.setText(_translate("MainWindow", "Подожите, идёт загрузка данных"))
 
 
     '''Все функции кнопок и тп'''
@@ -591,6 +635,8 @@ class Ui_MainWindow(QMainWindow, object):
         self.login_registerWin.clicked.connect(self.wallcast_log_in)
         self.back_log_in.clicked.connect(self.wallcast_log_in_back)
         self.further_log_in.clicked.connect(self.wallcast_log_in_further)
+        self.show_password_log_in.clicked.connect(self.wallcast_show_password_log_in)
+        self.hide_password_log_in.clicked.connect(self.wallcast_hide_password_log_in)
         '''Функции текстовых значений'''
         self.password_register.textEdited.connect(self.wallcast_password_check)
         self.username_register.textEdited.connect(self.wallcast_name_check)
@@ -682,17 +728,23 @@ class Ui_MainWindow(QMainWindow, object):
         self.register.setVisible(True)
         self.password_register.setText('')
         self.username_register.setText('')
+    def wallcast_show_password_log_in(self):   #Показать пароль
+        self.show_password_log_in.setVisible(False)
+        self.hide_password_log_in.setVisible(True)
+        self.password_log_in.setEchoMode(QLineEdit.Normal)
+    def wallcast_hide_password_log_in(self):   #Скрыть пароль
+        self.hide_password_log_in.setVisible(False)
+        self.show_password_log_in.setVisible(True)
+        self.password_log_in.setEchoMode(QLineEdit.Password)
     def wallcast_log_in_password_check(self, text):
         self.log_in_password = text
-        print(self.log_in_password)
     def wallcast_log_in_further(self):
-        print(self.log_in_name)
-        print(self.log_in_password)
         user = session.query(User).filter_by(username=self.log_in_name, password=self.log_in_password).first()
         if user:
                 self.log_in.setVisible(False)
                 self.blur.setVisible(False)
                 self.nickname.setText(self.log_in_name)
+                save_account_data(self.log_in_name, self.log_in_password)
         else:
                 self.incorrect_data_for_log_in.setVisible(True)
     def wallcast_log_in_name_check(self, text):

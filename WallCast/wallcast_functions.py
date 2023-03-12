@@ -3,10 +3,6 @@ import re
 
 from wallcast_BD import *
 
-import pyaudio
-import wave
-import keyboard
-
 os.path.abspath('logo_wallcast.png')
 
 '''Получение пути к файлам'''
@@ -20,8 +16,6 @@ closed_eye = str(os.path.abspath('closed_eye.png'))
 '''Проверка пароля на наличие необходимых знаков'''
 def validate_password(text):
     if not re.search(r'\d', text):  # Проверка наличия цифры
-        return False
-    if not re.search(r'[!@#^*]', text):  # Проверка наличия специального символа
         return False
     if not re.search(r'[a-zA-Z]', text):  # Проверка наличия латинской буквы
         return False
@@ -43,6 +37,10 @@ def wallcast_log_in_name_check(text):
 
 '''Проверка имени пользователя на правильность'''
 def validate_name(text):
+    if text == None:
+        return False
+    if re.search('[@_!#$%^&*()<>?/\|}{~:]', text):  # Проверка на наличие специальных символов
+        return False
     if not re.search(r'[a-zA-Z]', text):  # Проверка наличия латинской буквы
         return False
     if re.search(r'[а-яА-Я]', text):    # Проверка наличия русских букв
@@ -50,7 +48,6 @@ def validate_name(text):
     existing_user = session.query(User).filter_by(username=text).first()    #Проверка в БД
     if existing_user:
         return False
-
     else:
         return True
 

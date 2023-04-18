@@ -231,13 +231,12 @@ class Ui_MainWindow(QMainWindow, object):
 "font: 16pt \"Bahnschrift SemiLight Condensed\";")
         self.settings_button_profil.setAlignment(QtCore.Qt.AlignCenter)
         self.settings_button_profil.setObjectName("settings_button_profil")
-        self.log_off_button_profil = QtWidgets.QLabel(self.box_settings)
+        self.log_off_button_profil = QtWidgets.QPushButton(self.box_settings)
         self.log_off_button_profil.setGeometry(QtCore.QRect(10, 180, 151, 31))
         self.log_off_button_profil.setStyleSheet("color: rgb(170, 69, 52);\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
 "font: 16pt \"Bahnschrift SemiLight Condensed\";")
-        self.log_off_button_profil.setAlignment(QtCore.Qt.AlignCenter)
         self.log_off_button_profil.setObjectName("log_off_button_profil")
         self.change_account_button_profil = QtWidgets.QLabel(self.box_settings)
         self.change_account_button_profil.setGeometry(QtCore.QRect(10, 140, 151, 31))
@@ -557,8 +556,8 @@ class Ui_MainWindow(QMainWindow, object):
         self.function_wallcast()
 
         try:
-            if show_account_data() != False:
-                name = show_account_data()
+            if show_last_log_in() != ' ':
+                name = show_last_log_in()
                 self.nickname.setText(name)
                 self.register.setVisible(False)
                 self.blur.setVisible(False)
@@ -621,6 +620,7 @@ class Ui_MainWindow(QMainWindow, object):
     '''Все функции кнопок и тп'''
     def function_wallcast(self):
         '''Функции всех кнопок'''
+        self.log_off_button_profil.clicked.connect(self.wallcast_log_out)
         self.pushButton_tape.clicked.connect(self.wallcast_tape_button_click)
         self.pushButton_profil.clicked.connect(self.wallcast_profil_top_button_click)
         self.pushButton_subscriptions.clicked.connect(self.wallcast_subscriptions_button_click)
@@ -648,6 +648,8 @@ class Ui_MainWindow(QMainWindow, object):
         self.box_tape_slection.raise_()
         self.pushbutton_hide_window1.setVisible(True)
         self.pushbutton_hide_window2.setVisible(True)
+        self.box_notifications.setVisible(False)
+        self.box_settings.setVisible(False)
     def wallcast_profil_top_button_click(self):    #При нажатии на кнопку 'Профиль' происходит
         self.box_notifications.setVisible(False)
         self.box_settings.setVisible(True)
@@ -655,6 +657,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.pushbutton_hide_window2.setGeometry(QtCore.QRect(0, 70, 1131, 291))
         self.pushbutton_hide_window1.setVisible(True)
         self.pushbutton_hide_window2.setVisible(True)
+        self.box_tape_slection.setVisible(False)
     def wallcast_tape_2_button_click(self):    #При нажатии на кнопку 'Глобальная лента' происходит
         self.fon_subscriptions.setVisible(True)
         self.box_tape_slection.setVisible(False)
@@ -671,6 +674,7 @@ class Ui_MainWindow(QMainWindow, object):
     def wallcast_notification_button_click(self):   #Закрытие окна при клике в любую точку
         self.box_settings.setVisible(False)
         self.box_notifications.setVisible(True)
+        self.box_tape_slection.setVisible(False)
         self.pushbutton_hide_window1.setVisible(True)
         self.pushbutton_hide_window2.setVisible(True)
 
@@ -714,6 +718,8 @@ class Ui_MainWindow(QMainWindow, object):
             self.register.setVisible(False)
             self.nickname.setText(self.name)
             new_user(self.name, self.password)
+            save_account_data(self.name, self.password)
+            save_last_log_in(self.name, self.password)
         else:
             self.incorrect_data_for_registration.setVisible(True)
 
@@ -744,7 +750,7 @@ class Ui_MainWindow(QMainWindow, object):
                 self.log_in.setVisible(False)
                 self.blur.setVisible(False)
                 self.nickname.setText(self.log_in_name)
-                save_account_data(self.log_in_name, self.log_in_password)
+                save_last_log_in(self.log_in_name, self.log_in_password)
         else:
                 self.incorrect_data_for_log_in.setVisible(True)
     def wallcast_log_in_name_check(self, text):
@@ -759,6 +765,12 @@ class Ui_MainWindow(QMainWindow, object):
                                                      "border-radius: 14px;\n"
                                                      "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
                                                      "border: 3px solid red;")
+    def wallcast_log_out(self):
+        save_last_log_in(' ', ' ')
+        self.register.setVisible(True)
+        self.box_notifications.setVisible(False)
+        self.box_settings.setVisible(False)
+        self.box_tape_slection.setVisible(False)
 
 
 '''Запуск программы'''

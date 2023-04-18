@@ -28,3 +28,5 @@ def BD_list():
     for user in users:
         print('|', user.id, '|', user.username, '|', user.password, '|')
     print('------------------')
+
+BD_list()

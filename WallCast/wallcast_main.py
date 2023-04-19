@@ -238,12 +238,11 @@ class Ui_MainWindow(QMainWindow, object):
 "border-radius: 10px;\n"
 "font: 16pt \"Bahnschrift SemiLight Condensed\";")
         self.log_off_button_profil.setObjectName("log_off_button_profil")
-        self.change_account_button_profil = QtWidgets.QLabel(self.box_settings)
+        self.change_account_button_profil = QtWidgets.QPushButton(self.box_settings)
         self.change_account_button_profil.setGeometry(QtCore.QRect(10, 140, 151, 31))
         self.change_account_button_profil.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
 "font: 16pt \"Bahnschrift SemiLight Condensed\";")
-        self.change_account_button_profil.setAlignment(QtCore.Qt.AlignCenter)
         self.change_account_button_profil.setObjectName("change_account_button_profil")
         self.pushbutton_hide_window1 = QtWidgets.QPushButton(self.centralwidget)
         self.pushbutton_hide_window1.setGeometry(QtCore.QRect(0, 290, 1281, 431))
@@ -539,13 +538,26 @@ class Ui_MainWindow(QMainWindow, object):
         self.swap_account.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.swap_account.setFrameShadow(QtWidgets.QFrame.Raised)
         self.swap_account.setObjectName("swap_account")
-        self.swap_account.setVisible(True)
+        self.swap_account.setVisible(False)
 
         self.swap_account_text_swap = QtWidgets.QLabel(self.swap_account)
-        self.swap_account_text_swap.setGeometry(QtCore.QRect(0, 30, 521, 91))
-        self.swap_account_text_swap.setStyleSheet("font: 34pt \"Bahnschrift SemiLight Condensed\";")
+        self.swap_account_text_swap.setGeometry(QtCore.QRect(0, 10, 521, 91))
+        self.swap_account_text_swap.setStyleSheet("font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
+                                                  "font: bold 24px;")
         self.swap_account_text_swap.setAlignment(QtCore.Qt.AlignCenter)
         self.swap_account_text_swap.setObjectName("swap_account_text_swap")
+
+        self.swap_account_text_back = QtWidgets.QPushButton(self.swap_account)
+        self.swap_account_text_back.setGeometry(QtCore.QRect(30, 230, 141, 41))
+        self.swap_account_text_back.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                           "font: 26pt \"Bahnschrift SemiLight Condensed\";\n"
+                                           "border-style: outset;\n"
+                                           "border-width: 2px;\n"
+                                           "border-radius: 20px;\n"
+                                           "border-color: beige;\n"
+                                           "font: bold 24px;\n"
+                                           "padding: 2px;")
+        self.swap_account_text_back.setObjectName("swap_account_text_back")
 
 
         self.frame.raise_()
@@ -630,6 +642,8 @@ class Ui_MainWindow(QMainWindow, object):
         self.back_log_in.setText(_translate("MainWindow", "Обратно"))
         self.incorrect_data_for_log_in.setText(_translate("MainWindow", "Вы ввели данные неправильно!"))
         self.loading_label.setText(_translate("MainWindow", "Подожите, идёт загрузка данных"))
+        self.swap_account_text_swap.setText((_translate("MainWindow", "Сменить аккаунт")))
+        self.swap_account_text_back.setText(_translate("MainWindow", "Назад"))
 
 
     '''Все функции кнопок и тп'''
@@ -652,6 +666,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.further_log_in.clicked.connect(self.wallcast_log_in_further)
         self.show_password_log_in.clicked.connect(self.wallcast_show_password_log_in)
         self.hide_password_log_in.clicked.connect(self.wallcast_hide_password_log_in)
+        self.change_account_button_profil.clicked.connect(self.wallcast_swap_account)
         '''Функции текстовых значений'''
         self.password_register.textEdited.connect(self.wallcast_password_check)
         self.username_register.textEdited.connect(self.wallcast_name_check)
@@ -780,12 +795,18 @@ class Ui_MainWindow(QMainWindow, object):
                                                      "border-radius: 14px;\n"
                                                      "font: 18pt \"Bahnschrift SemiLight Condensed\";\n"
                                                      "border: 3px solid red;")
+    """Выход из аккаунта"""
     def wallcast_log_out(self):
         save_last_log_in(' ', ' ')
         self.register.setVisible(True)
         self.box_notifications.setVisible(False)
         self.box_settings.setVisible(False)
         self.box_tape_slection.setVisible(False)
+    """Смена аккаунта"""
+    def wallcast_swap_account(self):
+        self.swap_account.setVisible(True)
+        self.blur.setVisible(True)
+        self.box_settings.setVisible(False)
 
 
 '''Запуск программы'''

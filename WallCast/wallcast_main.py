@@ -532,6 +532,20 @@ class Ui_MainWindow(QMainWindow, object):
         gif = QtGui.QMovie(path)
         self.loading_gif.setMovie(gif)
         gif.start()
+        
+        self.swap_account = QtWidgets.QFrame(self.centralwidget)
+        self.swap_account.setGeometry(QtCore.QRect(380, 230, 521, 301))
+        self.swap_account.setStyleSheet("background-color: rgb(158, 151, 182);")
+        self.swap_account.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.swap_account.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.swap_account.setObjectName("swap_account")
+        self.swap_account.setVisible(True)
+
+        self.swap_account_text_swap = QtWidgets.QLabel(self.swap_account)
+        self.swap_account_text_swap.setGeometry(QtCore.QRect(0, 30, 521, 91))
+        self.swap_account_text_swap.setStyleSheet("font: 34pt \"Bahnschrift SemiLight Condensed\";")
+        self.swap_account_text_swap.setAlignment(QtCore.Qt.AlignCenter)
+        self.swap_account_text_swap.setObjectName("swap_account_text_swap")
 
 
         self.frame.raise_()
@@ -546,6 +560,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.register.raise_()
         self.log_in.raise_()
         self.loading.raise_()
+        self.swap_account.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
 

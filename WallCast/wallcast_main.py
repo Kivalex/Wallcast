@@ -2,9 +2,9 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QLineEdit
 
-from wallcast_functions import *
-from wallcast_BD import *
-from account import *
+from WallCast.wallcast_functions import *
+from WallCast.wallcast_BD import *
+from WallCast.account import *
 
 class Ui_MainWindow(QMainWindow, object):
     def __init__(self):
@@ -367,6 +367,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.password_register.setText("")
         self.password_register.setMaxLength(32767)
         self.password_register.setObjectName("password_register")
+        self.password_register.setEchoMode(QLineEdit.Password)
         self.label_2 = QtWidgets.QLabel(self.register)
         self.label_2.setGeometry(QtCore.QRect(80, 380, 401, 41))
         self.label_2.setStyleSheet("font: 18pt \"Bahnschrift SemiLight Condensed\";")
@@ -469,6 +470,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.password_log_in.setText("")
         self.password_log_in.setMaxLength(32767)
         self.password_log_in.setObjectName("password_log_in")
+        self.password_log_in.setEchoMode(QLineEdit.Password)
         self.further_log_in = QtWidgets.QPushButton(self.log_in)
         self.further_log_in.setGeometry(QtCore.QRect(280, 260, 111, 41))
         self.further_log_in.setStyleSheet("background-color: rgb(255, 255, 255);\n"
@@ -548,7 +550,7 @@ class Ui_MainWindow(QMainWindow, object):
         self.swap_account_text_swap.setObjectName("swap_account_text_swap")
 
         self.swap_account_text_back = QtWidgets.QPushButton(self.swap_account)
-        self.swap_account_text_back.setGeometry(QtCore.QRect(30, 230, 141, 41))
+        self.swap_account_text_back.setGeometry(QtCore.QRect(15, 20, 50, 42))
         self.swap_account_text_back.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                            "font: 26pt \"Bahnschrift SemiLight Condensed\";\n"
                                            "border-style: outset;\n"
@@ -558,6 +560,10 @@ class Ui_MainWindow(QMainWindow, object):
                                            "font: bold 24px;\n"
                                            "padding: 2px;")
         self.swap_account_text_back.setObjectName("swap_account_text_back")
+        swap_accaount_back_icon = QtGui.QIcon()
+        swap_accaount_back_icon.addPixmap(QtGui.QPixmap(back_icon), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.swap_account_text_back.setIcon(swap_accaount_back_icon)
+        self.swap_account_text_back.setIconSize(QtCore.QSize(77, 55))
 
 
         self.frame.raise_()
@@ -639,11 +645,10 @@ class Ui_MainWindow(QMainWindow, object):
         self.username_log_in.setPlaceholderText(_translate("MainWindow", "Имя пользователя"))
         self.password_log_in.setPlaceholderText(_translate("MainWindow", "Пароль"))
         self.further_log_in.setText(_translate("MainWindow", "Далее"))
-        self.back_log_in.setText(_translate("MainWindow", "Обратно"))
+        self.back_log_in.setText(_translate("MainWindow", "Назад"))
         self.incorrect_data_for_log_in.setText(_translate("MainWindow", "Вы ввели данные неправильно!"))
         self.loading_label.setText(_translate("MainWindow", "Подожите, идёт загрузка данных"))
         self.swap_account_text_swap.setText((_translate("MainWindow", "Сменить аккаунт")))
-        self.swap_account_text_back.setText(_translate("MainWindow", "Назад"))
 
 
     '''Все функции кнопок и тп'''
@@ -710,13 +715,13 @@ class Ui_MainWindow(QMainWindow, object):
 
     '''Регистрационное окно'''
     def wallcast_show_password(self):   #Показать пароль
-        self.show_password_register.setVisible(False)
         self.hide_password_register.setVisible(True)
-        self.password_register.setEchoMode(QLineEdit.Normal)
-    def wallcast_hide_password(self):   #Скрыть пароль
-        self.hide_password_register.setVisible(False)
-        self.show_password_register.setVisible(True)
+        self.show_password_register.setVisible(False)
         self.password_register.setEchoMode(QLineEdit.Password)
+    def wallcast_hide_password(self):   #Скрыть пароль
+        self.show_password_register.setVisible(True)
+        self.hide_password_register.setVisible(False)
+        self.password_register.setEchoMode(QLineEdit.Normal)
     def wallcast_password_check(self, password):    #Проверка пароля
         self.password = password
         if validate_password(password) == True:
@@ -765,13 +770,13 @@ class Ui_MainWindow(QMainWindow, object):
         self.password_register.setText('')
         self.username_register.setText('')
     def wallcast_show_password_log_in(self):   #Показать пароль
-        self.show_password_log_in.setVisible(False)
         self.hide_password_log_in.setVisible(True)
-        self.password_log_in.setEchoMode(QLineEdit.Normal)
-    def wallcast_hide_password_log_in(self):   #Скрыть пароль
-        self.hide_password_log_in.setVisible(False)
-        self.show_password_log_in.setVisible(True)
+        self.show_password_log_in.setVisible(False)
         self.password_log_in.setEchoMode(QLineEdit.Password)
+    def wallcast_hide_password_log_in(self):   #Скрыть пароль
+        self.show_password_log_in.setVisible(True)
+        self.hide_password_log_in.setVisible(False)
+        self.password_log_in.setEchoMode(QLineEdit.Normal)
     def wallcast_log_in_password_check(self, text):
         self.log_in_password = text
     def wallcast_log_in_further(self):
